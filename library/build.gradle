@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 23
@@ -27,6 +27,16 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23+'
     compile 'com.google.code.gson:gson:2+'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1+'
-
 }
+
+
+publish {
+    userOrg = 'vickyleu'//bintray.com用户名
+    groupId = 'com.vickyleu'//jcenter上的路径
+    artifactId = 'easy-framework'//项目名称
+    publishVersion = '1.0.0'//版本号
+    desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
+    website = 'https://github.com/vickyleu/easy-framework'//网站，不重要
+}
+
 
