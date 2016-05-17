@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="database_init_error">数据库没有初始化</string>
+</resources>

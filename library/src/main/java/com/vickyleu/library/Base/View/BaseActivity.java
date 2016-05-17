@@ -1,7 +1,12 @@
 package com.vickyleu.library.Base.View;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -26,6 +31,7 @@ import com.vickyleu.library.Base.model.HttpLibrary.BaseHttpConnectPool;
 import com.vickyleu.library.Base.model.HttpLibrary.BaseHttpHandler;
 import com.vickyleu.library.Base.model.HttpLibrary.HttpHandler;
 import com.vickyleu.library.Base.model.HttpLibrary.HttpResponseModel;
+import com.vickyleu.library.Base.model.IReceiver;
 import com.vickyleu.library.Base.model.Merge.IView;
 import com.vickyleu.library.Base.model.RecyclerViewType;
 import com.vickyleu.library.R;
@@ -87,6 +93,24 @@ public abstract class BaseActivity extends AppCompatActivity implements
         }
         t.setAdapter(adapter);
 
+    }
+
+    NetConnect netConnect = new NetConnect();
+
+    final class NetConnect extends IReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals("android.net.conn.CONNECTIVITY_CHANGE")) {
+                ConnectivityManager connectivityManager = (ConnectivityManager) context
+                        .getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+                if (info != null && info.isConnected()) {
+                    connect();
+                } else {
+                    disconnect();
+                }
+            }
+        }
     }
 
     public final void registerIP_C(IView iView) {
@@ -158,7 +182,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
     protected abstract void onClickEvent(int viewId);
 
 
-
     protected final void addReq(String url, Object param, int timeout) {
         if (pool == null) pool = BaseHttpConnectPool.getInstance();
         pool.addRequest(url, param, new BaseHttpHandler(this), timeout);
@@ -225,7 +248,6 @@ public abstract class BaseActivity extends AppCompatActivity implements
         }
         return json;
     }
-
 
 
     protected void showDialog(int type, String... content) {
@@ -401,6 +423,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     @Override
     protected void onPause() {
         super.onPause();
+        netConnect.unregister(this);
         if (cycle != null)
             cycle.onPause();
     }
@@ -429,6 +452,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
+        netConnect.register(netConnect.getFilter(IReceiver.NET), this);
         if (cycle != null)
             cycle.onResume();
     }

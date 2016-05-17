@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.vickyleu.library.Base.model.AppCenter;
 import com.vickyleu.library.Base.model.DbCallBack;
-
+import com.vickyleu.library.R;
 
 
 public class DataBaseCenter extends SQLiteOpenHelper {
@@ -27,8 +27,7 @@ public class DataBaseCenter extends SQLiteOpenHelper {
 
     public static synchronized DataBaseCenter getDBInstance(Context mContext) throws Exception {
         if (mName == null || mName.equals("") || mVersion == -1 || mCall == null)
-            throw new Exception("数据库没有初始化");
-
+            throw new Exception(mContext.getString(R.string.database_init_error));
         if (helper == null) {
             helper = new DataBaseCenter(mContext, mName, mVersion);
         }

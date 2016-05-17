@@ -30,7 +30,6 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
     protected OnItemClickListener mOnItemClickListener;
 
     protected OnItemLongClickListener mOnItemLongClickListener;
-    int _req = -1;
     OnViewClickListener mOnViewClickListener;
     private DataBaseCenter db = null;
     private Map<Integer, IPresenter> presenterMap = new HashMap<>();
@@ -147,7 +146,6 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
     }
 
 
-
     protected final void bindItemViewClickListener(final VH vh, final T item) {
         if (mOnItemClickListener != null) {
 
@@ -177,9 +175,9 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
         refreshIView(position, vh, t, resId, layout);
     }
 
-    private final void refreshIView(int position, VH vh, T t, int resId, int layout) {
-        if (ip_c!=null)
-        ip_c.notifyView(position, vh, t, resId, layout);
+    private void refreshIView(int position, VH vh, T t, int resId, int layout) {
+        if (ip_c != null)
+            ip_c.notifyView(position, vh, t, resId, layout);
     }
 
     protected abstract void bindView(VH vh, int position, int viewType);

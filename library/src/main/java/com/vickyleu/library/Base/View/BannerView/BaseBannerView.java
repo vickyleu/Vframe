@@ -101,7 +101,6 @@ public abstract class BaseBannerView extends FrameLayout implements BannerPagerA
         this.addView(linearLayout);
         View v = addCustomerView();
         this.addView(v != null ? v : null);
-        ;
     }
 
     protected abstract View addCustomerView();
@@ -114,10 +113,8 @@ public abstract class BaseBannerView extends FrameLayout implements BannerPagerA
         } else {
             adapter.notifyDataSetChanged();
             viewPager.invalidate();
-
         }
         viewPager.setCurrentItem(0);
-//        CurrentPosition(viewPager.getCurrentItem());
         viewPager.setOnTouchListener(this);
         mHandler.removeCallbacksAndMessages(null);
         mHandler.postDelayed(run, time);
@@ -128,7 +125,6 @@ public abstract class BaseBannerView extends FrameLayout implements BannerPagerA
         if (dots != null && dots.length != 0 && dots.length - 1 >= position) {
             dots[position].draw(c());
             dots[position].draw(dotShow());
-
         }
     }
 
@@ -154,7 +150,6 @@ public abstract class BaseBannerView extends FrameLayout implements BannerPagerA
         if (dots != null && dots.length != 0 && dots.length - 1 >= position) {
             dots[position].draw(c());
             dots[position].draw(dotHide());
-
         }
     }
 
@@ -199,13 +194,11 @@ public abstract class BaseBannerView extends FrameLayout implements BannerPagerA
 
     public interface ObjCallback {
         void showObj(Object o, int position);
-
         void hideObj(Object o, int position);
     }
 
     public interface StringCallback {
         void showObj(String o, int position);
-
         void hideObj(String o, int position);
     }
 
@@ -227,12 +220,10 @@ public abstract class BaseBannerView extends FrameLayout implements BannerPagerA
 
     @Override
     public void onPageSelected(int position) {
-
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 
 

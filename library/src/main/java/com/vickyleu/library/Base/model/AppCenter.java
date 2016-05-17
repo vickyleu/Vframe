@@ -2,6 +2,8 @@ package com.vickyleu.library.Base.model;
 
 import android.app.Application;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.vickyleu.library.Base.model.Img.BaseImageCenter;
 import com.vickyleu.library.Model.DataBaseCenter;
@@ -66,6 +68,26 @@ public abstract class AppCenter extends Application implements DbCallBack {
 
     public static synchronized AppCenter getInstant() {
         return instant;
+    }
+
+    public static final boolean checkNet(){
+        try {
+            ConnectivityManager connectivity = (ConnectivityManager) getInstant()
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (connectivity != null) {
+                // 获取网络连接管理的对象
+                NetworkInfo info = connectivity.getActiveNetworkInfo();
+                if (info != null && info.isConnected()) {
+                    // 判断当前网络是否已经连接
+                    if (info.getState() == NetworkInfo.State.CONNECTED) {
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
