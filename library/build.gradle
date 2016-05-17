@@ -20,6 +20,18 @@ android {
     }
 }
 
+task makeJar(type: Copy) {
+    delete 'build/libs/VLib.jar'
+    from('build/intermediates/bundles/release/')
+    into('build/libs/')
+    include('classes.jar')
+    rename('classes.jar', 'VLib.jar')
+}
+
+makeJar.dependsOn(build)
+//在终端执行生成JAR包
+// gradlew makeJar
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -31,12 +43,14 @@ dependencies {
 
 
 publish {
-    userOrg = 'vickyleu'//bintray.com用户名
-    groupId = 'com.vickyleu'//jcenter上的路径
-    artifactId = 'easy-framework'//项目名称
-    publishVersion = '1.0.0'//版本号
-    desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
-    website = 'https://github.com/vickyleu/easy-framework'//网站，不重要
+    userOrg = 'vickyleu'
+    groupId = 'com.vickyleu'
+    artifactId = 'easy-framework'
+    publishVersion = '1.0.0'
+    desc = 'just test'
+    website = 'https://github.com/vickyleu/easy-framework'
+
+//            gradlew clean build bintrayUpload -PbintrayUser=vickyleu -PbintrayKey=92a17b37b7b273755f9858980c3f9aabd5ed4f45 -PdryRun=false
 }
 
 
