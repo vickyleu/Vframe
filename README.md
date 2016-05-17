@@ -1,10 +1,10 @@
 #Easy Framework
 
-##写在前头:本插件只适用 android studio和 Intellij IDEA 工具,eclipse 的少年无视我吧!!!
+##写在前头:本插件只适用 android studio和 Intellij IDEA 工具!!!
 HttpLib reference for Ecol's(郑毅)  code!
 网络请求引用了郑毅大神的代码
 
-library include Gson and RecyclerView support,but RecyclerView jar file must download by yourself
+library include Gson and RecyclerView support
 库文件包含Gson和回收视图支持
 
 Application class make use of ImageLoader for load Image;
