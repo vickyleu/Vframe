@@ -75,10 +75,8 @@ public abstract class AppCenter extends Application implements DbCallBack {
             ConnectivityManager connectivity = (ConnectivityManager) getInstant()
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
             if (connectivity != null) {
-                // 获取网络连接管理的对象
                 NetworkInfo info = connectivity.getActiveNetworkInfo();
                 if (info != null && info.isConnected()) {
-                    // 判断当前网络是否已经连接
                     if (info.getState() == NetworkInfo.State.CONNECTED) {
                         return true;
                     }
