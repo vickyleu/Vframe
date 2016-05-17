@@ -1,6 +1,6 @@
 #Easy Framework
 
-##写在前头:本插件只适用 android studio和 Intellij IDEA 工具!!!
+##写在前头:只适用 Android Studio和 Intellij IDEA 工具!!!
 HttpLib reference for Ecol's(郑毅)  code!
 网络请求引用了郑毅大神的代码
 
@@ -16,7 +16,7 @@ universal activity based on AppcompatActivity;
 universal adapter based on RecycleAdapter;
 通用适配器基于回收适配器
 
-universal presenter did't have any 卵用(其实我还没弄明白mvp有啥好处)
+universal presenter did't have any 卵用(其实我还没弄明白有啥用,虽然是我自己写的.....)
 
 
 ##How To Use
