@@ -14,6 +14,7 @@ Add the dependencies section into `build.gradle` in your module if it doesn't al
 ```
     dependencies {
        compile 'com.vickyleu.easy-framework:1.0.0'
+       蔡海小婊砸
    }
 
 
