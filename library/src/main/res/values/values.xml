@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="UnderLineLinearLayout">
+        <attr name="line_margin_side" format="dimension" />
+        <attr name="line_dynamic_dimen" format="dimension" />
+        <attr name="line_stroke_width" format="dimension" />
+        <attr name="line_color" format="color" />
+        <attr name="point_size" format="dimension" />
+        <attr name="point_color" format="color" />
+        <attr name="icon_src" format="reference" />
+        <attr name="line_gravity">
+            <enum name="Left" value="2" />
+            <enum name="Right" value="4" />
+            <enum name="Middle" value="0" />
+            <enum name="Top" value="1" />
+            <enum name="Bottom" value="3" />
+        </attr>
+    </declare-styleable>
+    <string name="app_name">library</string>
+    <string name="crash">出现闪退了正在把日志保存到sdcard crash目录下</string>
+    <string name="please_wait">请稍候</string>
+    <string name="too_less">数量过少</string>
+</resources>
