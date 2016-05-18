@@ -81,7 +81,6 @@ public class SocketHelper {
         public Socket call() throws Exception {
             Socket mSocket = null;
             try {
-
                 if (!ss.isBound()) ss.bind(new InetSocketAddress(port));
                 mSocket = ss.accept();
             } catch (IOException e) {
