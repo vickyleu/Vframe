@@ -9,9 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-/**
- * Created by Administrator on 2016/5/17.
- */
+
 public class SocketHelper {
     private static ExecutorService exe;
     static ServerSocket ss;

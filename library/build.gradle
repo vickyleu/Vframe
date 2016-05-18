@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
@@ -18,6 +19,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+
 }
 
 task makeJar(type: Copy) {
@@ -27,6 +34,8 @@ task makeJar(type: Copy) {
     include('classes.jar')
     rename('classes.jar', 'VLib.jar')
 }
+
+
 
 makeJar.dependsOn(build)
 //在终端执行生成JAR包
@@ -41,15 +50,24 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1+'
 }
 
+task generateJavadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    ext.cp = android.libraryVariants.collect { variant ->
+        variant.javaCompile.classpath.files
+    }
+    classpath = files(ext.cp)
+}
+
 
 publish {
     userOrg = 'vickyleu'
     groupId = 'com.vickyleu'
     artifactId = 'easy-framework'
     publishVersion = '1.0.0'
-    desc = 'just test'
+    desc = 'test 2'
     website = 'https://github.com/vickyleu/easy-framework'
-
 }
+
+
 
 

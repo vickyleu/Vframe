@@ -11,11 +11,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.Future;
 
-/**
- * @Created by VickyLeu on 2016/5/18.
- * @Author VickyLeu
- * @Companny Esapos
- */
 public abstract class SocketServer extends Service {
 
 
