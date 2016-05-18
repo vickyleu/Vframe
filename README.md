@@ -32,7 +32,7 @@ modify `build.gradle` in your module gradle
 Add the dependencies section into `build.gradle` in your module if it doesn't already exist:
 ```
     dependencies {
-       compile 'com.vickyleu.easy-framework:1.0.0'
+       compile 'com.vickyleu:easy-framework:1.0.0'
        蔡海小婊砸
    }
 
