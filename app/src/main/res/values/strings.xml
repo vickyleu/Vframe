@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="login_tips">尊贵xxx先生/小姐，欢迎光临吉宝盛世湾!\n您是第一次登录，需要通过手机认证修改密码</string>
+    <string name="submit_button">提交   SUBMIT</string>
+    <string name="pw_tips">密码password</string>
+    <string name="us_tips">帐号 account</string>
+    <string name="pls_pw">请输入密码</string>
+    <string name="pls_us">请输入账号</string>
+    <string name="forget_pw">忘记密码?</string>
+    <string name="normal_phone_text">请输入预留手机号码</string>
+    <string name="phone_text">手机号码</string>
+    <string name="captcha">验证码</string>
+    <string name="receive_captcha">获取验证码</string>
+    <string name="next_step">下一步   NEXT</string>
+    <string name="pls_new_pw">请输入新密码</string>
+    <string name="new_pw">输入新密码</string>
+    <string name="confirm_pw">确认新密码</string>
+    <string name="reset_success">新密码设置成功！\n请在登录页面使用新密码登录！</string>
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

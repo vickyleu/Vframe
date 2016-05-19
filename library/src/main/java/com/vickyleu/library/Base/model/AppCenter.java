@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.vickyleu.library.Base.model.Img.BaseImageCenter;
+import com.vickyleu.library.Base.model.Socket.SocketHelper;
 import com.vickyleu.library.Model.DataBaseCenter;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
