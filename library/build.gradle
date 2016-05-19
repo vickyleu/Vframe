@@ -50,6 +50,7 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1+'
 }
 
+//gradlew assemble generateJavadoc
 task generateJavadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     ext.cp = android.libraryVariants.collect { variant ->
@@ -57,7 +58,6 @@ task generateJavadoc(type: Javadoc) {
     }
     classpath = files(ext.cp)
 }
-
 
 publish {
     userOrg = 'vickyleu'

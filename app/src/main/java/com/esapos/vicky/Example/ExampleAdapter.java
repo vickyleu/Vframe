@@ -23,34 +23,7 @@ import com.vickyleu.library.Base.Controller.BaseViewType;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @Created by VickyLeu on 2016/5/8.
- * @Author VickyLeu
- * @Companny Esapos
- * ===================================================*
- * 　　　　　　　　　　_ooOoo_
- * 　　　　　　　　　　o8888888o
- * 　　　　　　　　　　88" . "88
- * 　　　　　　　　　　(| -_- |)
- * 　　　　　　　　　　O\  =  /O
- * 　　　　　　　　____/`---'\____
- * 　　　　　　　　.'  \\|     |//  `.
- * 　　　　　　　/  \\|||  :  |||//  \
- * 　　　　　　/  _||||| -:- |||||-  \
- * 　　　　　　|   | \\\  -  /// |   |
- * 　　　　　　| \_|  ''\---/''  |   |
- * 　　　　　　\  .-\__  `-`  ___/-. /
- * 　　　　　　___`. .'  /--.--\  `. . __
- * 　　　　　"" '<  `.___\_<|>_/___.'  >'"".
- * 　　　| | :  `- \`.;`\ _ /`;.`/ - ` : | |
- * 　　　\  \ `-.   \_ __\ /__ _/   .-` /  /
- * ======`-.____`-.___\_____/___.-`____.-'======
- * 　　　　　　　　　　`=---='
- * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- * 　　　　　　佛祖保佑　　　　永无BUG
- * <p>
- * =================================================*
- */
+
 public class ExampleAdapter extends BaseRecyclerAdapter<String, ExampleAdapter.Holder> {
     private static final String TAG = ExampleAdapter.class.getSimpleName();
     private Random random;
