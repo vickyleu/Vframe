@@ -24,15 +24,26 @@ import com.vickyleu.library.Base.model.Socket.SocketServer;
 
 import java.io.File;
 
+import rx.Subscriber;
 
-public class App extends AppCenter implements SocketServer.SocketResponse {
+
+public class App extends AppCenter implements SocketServer.SocketResponse, SocketHelper.SocketClientResponse {
     @Override
     protected void initApp() {
         //装载崩溃处理器
         CrashHandler.install(this);
-        //开启socket推送接收服务
-        SocketHelper.init().openServer(this, 8080);
     }
+
+    final void openServer(SocketType type) {
+        //开启socket推送接收服务
+        if (type == SocketType.SERVER) SocketHelper.init().openServer(this, 8080);
+        else SocketHelper.init().openClient(this, "192.168.1.134", 8080);
+    }
+
+    public enum SocketType{
+        SERVER,CLIENT
+    }
+
 
     @Override
     protected void initImgFromApp(BaseImageCenter baseImageCenter) {
@@ -100,12 +111,12 @@ public class App extends AppCenter implements SocketServer.SocketResponse {
 
     @Override
     protected String setName() {
-        return null;
+        return "sql.db";
     }
 
     @Override
     protected int setVersion() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -119,12 +130,29 @@ public class App extends AppCenter implements SocketServer.SocketResponse {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
 
     @Override
     public String onResponse(String response) {
         return null;
+    }
+
+    @Override
+    public String onClientResponse(String response) {
+        return null;
+    }
+
+    @Override
+    public <RawType> void sendNext(Subscriber<RawType> subscriber, RawType rawType) {
+
+//        if (rawType instanceof String) {
+//            onNext(subscriber, rawType);
+//        }
+
+
+
     }
 }

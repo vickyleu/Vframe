@@ -1,10 +1,8 @@
 package com.vickyleu.library.Base.View;
 
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -33,6 +31,7 @@ import com.vickyleu.library.Base.model.HttpLibrary.HttpHandler;
 import com.vickyleu.library.Base.model.HttpLibrary.HttpResponseModel;
 import com.vickyleu.library.Base.model.IReceiver;
 import com.vickyleu.library.Base.model.Merge.IView;
+import com.vickyleu.library.Base.model.Merge.MergeUtils;
 import com.vickyleu.library.Base.model.RecyclerViewType;
 import com.vickyleu.library.R;
 
@@ -120,6 +119,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
     protected final <V extends View, D> void setPresenter(IPresenter<V, D> presenter, int resId) {
         presenterMap.put(resId, presenter);
         cycle = presenter.getCallBack();
+        MergeUtils<BaseActivity, BaseRecyclerAdapter, IPresenter<V, D>> utils = new MergeUtils<BaseActivity, BaseRecyclerAdapter, IPresenter<V, D>>(this, presenter);
     }
 
     protected final IPresenter getPresenter(int key) {

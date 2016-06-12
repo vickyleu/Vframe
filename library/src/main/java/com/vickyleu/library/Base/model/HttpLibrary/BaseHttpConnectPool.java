@@ -1,8 +1,6 @@
 package com.vickyleu.library.Base.model.HttpLibrary;
 
 
-
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -20,10 +18,9 @@ public final class BaseHttpConnectPool {
     public final void removeAllRequest() {
         try {
             Set e = httpRequests.entrySet();
-            Iterator var3 = e.iterator();
 
-            while (var3.hasNext()) {
-                Map.Entry entry = (Map.Entry) var3.next();
+            for (Object obj : e) {
+                Map.Entry entry = (Map.Entry) obj;
                 ((BaseHttpRequest) entry.getValue()).setRequesting(false);
             }
 
@@ -34,13 +31,12 @@ public final class BaseHttpConnectPool {
 
     }
 
-    private final void removeDieRequest() {
+    private void removeDieRequest() {
         try {
             Set e = httpRequests.entrySet();
-            Iterator var3 = e.iterator();
 
-            while (var3.hasNext()) {
-                Map.Entry entry = (Map.Entry) var3.next();
+            for (Object obj : e) {
+                Map.Entry entry = (Map.Entry) obj;
                 if (!((BaseHttpRequest) entry.getValue()).isAlive()) {
                     httpRequests.remove(entry.getKey());
                 }
@@ -51,7 +47,7 @@ public final class BaseHttpConnectPool {
 
     }
 
-    public static final void removeRequest(String requestTag) {
+    public static void removeRequest(String requestTag) {
         if (requestTag != null) {
             try {
                 if (httpRequests.containsKey(requestTag)) {
@@ -87,7 +83,7 @@ public final class BaseHttpConnectPool {
         this.addRequest(requestUrl, params, callBack, timeout, which, (Map) null);
     }
 
-    public synchronized void addRequest(String requestUrl, Object params, BaseHttpHandler callBack,int timeout) {
+    public synchronized void addRequest(String requestUrl, Object params, BaseHttpHandler callBack, int timeout) {
         this.addRequest(requestUrl, params, callBack, timeout, -1, (Map) null);
     }
 

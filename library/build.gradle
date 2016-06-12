@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'me.tatarka.retrolambda'
+
 
 android {
     compileSdkVersion 23
@@ -13,6 +15,15 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    retrolambda {
+        javaVersion JavaVersion.VERSION_1_6
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -42,19 +53,25 @@ makeJar.dependsOn(build)
 // gradlew makeJar
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile 'com.squareup.retrofit2:converter-gson:2+'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2+'
     compile 'com.android.support:appcompat-v7:23+'
-    compile 'com.android.support:recyclerview-v7:23+'
+    compile 'com.android.support:support-v4:23+'
     compile 'com.google.code.gson:gson:2+'
+    compile 'com.android.support:recyclerview-v7:23+'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1+'
+    compile 'com.squareup.retrofit2:retrofit:2+'
+    compile 'io.reactivex:rxandroid:1+'
+    compile 'io.reactivex:rxjava:1+'
+    compile 'com.squareup.okio:okio:1+'
 }
 
 //gradlew assemble generateJavadoc
-task generateJavadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    ext.cp = android.libraryVariants.collect { variant ->
-        variant.javaCompile.classpath.files
+    task generateJavadoc(type: Javadoc) {
+      source = android.sourceSets.main.java.srcDirs
+      ext.cp = android.libraryVariants.collect { variant -> variant.javaCompile.classpath.files
     }
     classpath = files(ext.cp)
 }

@@ -1,7 +1,6 @@
 package com.esapos.vicky.Example;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -14,9 +13,7 @@ import android.widget.ImageView;
 
 import com.esapos.vicky.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.vickyleu.library.Base.Controller.BaseRecyclerAdapter;
 import com.vickyleu.library.Base.Controller.BaseViewType;
 
@@ -36,20 +33,20 @@ public class ExampleAdapter extends BaseRecyclerAdapter<String, ExampleAdapter.H
 
     @Override
     protected void initAdapter(int i, BaseViewType... baseViewTypes) {
-        Log.e(TAG, "initAdapter: " );
+        Log.e(TAG, "initAdapter: ");
 
-        random=new Random();
+        random = new Random();
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         Display dp = wm.getDefaultDisplay();
         dp.getMetrics(dm);
-        x = dm.widthPixels;;
+        x = dm.widthPixels;
         y = dm.heightPixels;
     }
 
     @Override
     protected Holder singleType(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-        Log.e(TAG, "singleType: " );
+        Log.e(TAG, "singleType: ");
         return new Holder(layoutInflater.inflate(R.layout.adapter, viewGroup, false));
     }
 
@@ -65,34 +62,10 @@ public class ExampleAdapter extends BaseRecyclerAdapter<String, ExampleAdapter.H
 
     @Override
     protected void bindView(Holder holder, int i, int i1, String s) {
-
-        Log.e(TAG, "bindView: " );
+        Log.e(TAG, "bindView: ");
         ImageLoader loader = ImageLoader.getInstance();
-        ImageSize size=new ImageSize( random.nextInt(x/2), random.nextInt(y/4));
-        ImageLoadingListener listner=new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String s, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-
-            }
-
-            @Override
-            public void onLoadingCancelled(String s, View view) {
-
-            }
-        };
-
-        loader.loadImage(s,size,listner);
-        loader.displayImage(s.toString(),holder.textView);
+        ImageSize size = new ImageSize(random.nextInt(x / 2), random.nextInt(y / 4));
+        loader.displayImage(s, holder.textView, size);
         setViewType(0);
     }
 

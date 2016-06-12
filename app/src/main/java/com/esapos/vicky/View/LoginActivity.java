@@ -1,8 +1,10 @@
 package com.esapos.vicky.View;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v4.app.FragmentManager;
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Display;
@@ -16,11 +18,12 @@ import android.widget.TextView;
 
 import com.esapos.vicky.Presenter.FragmentPresenter;
 import com.esapos.vicky.R;
+import com.vickyleu.library.Base.Controller.BaseReceiver;
 import com.vickyleu.library.Base.View.BaseActivity;
+import com.vickyleu.library.Base.model.BaseBroadcast;
 import com.vickyleu.library.Base.model.HttpLibrary.HttpResponseModel;
-import com.vickyleu.library.Base.model.Merge.MergeUtils;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements BaseReceiver.Receiver {
     private Dialog loginDlg;
     private FragmentTransaction transaction;
 
@@ -32,20 +35,40 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void initView() {
         FrameLayout fl = toView(FrameLayout.class, R.id.container);
-        Fragment();
-        final FragmentPresenter presenter = new FragmentPresenter(this, this, "tag1", Fragment(), fl);
+
+        @SuppressLint("CommitTransaction") final FragmentPresenter presenter = new FragmentPresenter(this, this, "tag1", getV4Manager().beginTransaction(), fl);
         setPresenter(presenter, R.id.container);
-        new MergeUtils(this, presenter);
+        BaseReceiver.install(this, "fragment", this, "android.action.firstFragment", "android.action.secondFragment", "android.action.thirdFragment");
+
+        BaseBroadcast.send(this, "android.action.firstFragment");
     }
 
-    public FragmentTransaction Fragment() {
-        if (transaction == null) {
-            FragmentManager fragmentManager = getV4Manager();
-            transaction = fragmentManager.beginTransaction();
+    @Override
+    public void onReceiverWorking(String name, String action, Context context, Intent intent) {
+
+        if (name.equals("fragment")) {
+            switch (action) {
+                case "android.action.firstFragment": {
+                    FragmentPresenter presenter = (FragmentPresenter) getPresenter(R.id.container);
+                    try {
+                        presenter.next(getV4Manager(), "reset", R.layout.reset_pw);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                case "android.action.secondFragment": {
+                    FragmentPresenter presenter = (FragmentPresenter) getPresenter(R.id.container);
+                    try {
+                        presenter.next(getV4Manager(), "reset", R.layout.reset_pw);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+            }
         }
-        return transaction;
     }
-
     @Override
     protected void onClickEvent(int i) {
         switch (i) {
@@ -66,12 +89,16 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void httpErr(String s, HttpResponseModel model) {
 
-        if (s.equals("https://192.168.0.125")) {
-            submitResult(model);
-        } else if (s.equals("https://192.168.2.125")) {
-            nextStepResult(model);
-        } else if (s.equals("https://192.168.6.125")) {
-            resetSuccess(model);
+        switch (s) {
+            case "https://192.168.0.125":
+                submitResult(model);
+                break;
+            case "https://192.168.2.125":
+                nextStepResult(model);
+                break;
+            case "https://192.168.6.125":
+                resetSuccess(model);
+                break;
         }
 
     }
@@ -79,12 +106,16 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void httpSuccess(String s, HttpResponseModel model) {
-        if (s.equals("https://192.168.0.125")) {
-            submitResult(model);
-        } else if (s.equals("https://192.168.2.125")) {
-            nextStepResult(model);
-        } else if (s.equals("https://192.168.6.125")) {
-            resetSuccess(model);
+        switch (s) {
+            case "https://192.168.0.125":
+                submitResult(model);
+                break;
+            case "https://192.168.2.125":
+                nextStepResult(model);
+                break;
+            case "https://192.168.6.125":
+                resetSuccess(model);
+                break;
         }
 
     }
@@ -127,7 +158,7 @@ public class LoginActivity extends BaseActivity {
         if (loginDlg != null && loginDlg.isShowing()) loginDlg.dismiss();
         loginDlg = new Dialog(this, style);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.tips_dialog, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.tips_dialog, null);
         loginDlg.setContentView(view);
         ((TextView) view.findViewById(R.id.text)).setText(getResources().getString(tip));
         Window alertWindow = loginDlg.getWindow();
@@ -150,8 +181,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected Object initFragmentFilter() {
         FragmentPresenter p = ((FragmentPresenter) getPresenter(R.id.container));
-        String tag = p.getForceTag();
-        return tag;
+        return p.getForceTag();
     }
 
     @Override

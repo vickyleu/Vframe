@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="database_init_error">数据库没有初始化</string>
+    <string name="host_unused">基础ip地址/主机名必须被定义,否则Retrofit引擎将不可用</string>
+    <string name="init_net_error">RetrofitEngine初始化失败</string>
+    <string name="login_only_can_input">qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM1234567890</string>
 </resources>
