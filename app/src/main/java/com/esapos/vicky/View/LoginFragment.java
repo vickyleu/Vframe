@@ -39,6 +39,7 @@ public class LoginFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         Log.e("onViewCreated", "onResume");
+
     }
 
 

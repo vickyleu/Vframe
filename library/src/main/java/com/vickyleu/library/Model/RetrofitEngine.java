@@ -17,9 +17,7 @@ public class RetrofitEngine {
     private Retrofit retrofit;
     private static RetrofitEngine singleton;
 
-    //构造私有方法
     private RetrofitEngine(Context context) {
-        //手动创建一个OkHttpClient并设置超时时间
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         AppCenter app = null;
@@ -34,7 +32,6 @@ public class RetrofitEngine {
                 .build();
     }
 
-    //获取单例
     public synchronized static RetrofitEngine getInstance(Context context) {
         if (singleton == null) {
             singleton = new RetrofitEngine(context);

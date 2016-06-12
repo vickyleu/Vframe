@@ -10,7 +10,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 11
+        minSdkVersion 8
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -27,6 +27,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -39,11 +40,11 @@ android {
 }
 
 task makeJar(type: Copy) {
-    delete 'build/libs/VLib.jar'
+    delete 'build/libs/elib.jar'
     from('build/intermediates/bundles/release/')
     into('build/libs/')
     include('classes.jar')
-    rename('classes.jar', 'VLib.jar')
+    rename('classes.jar', 'elib.jar')
 }
 
 

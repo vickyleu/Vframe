@@ -134,14 +134,6 @@ public abstract class AppCenter extends Application implements DbCallBack, Rx {
         return RetrofitEngine.getInstance(this).initService(t);
     }
 
-
-    /**
-     *
-     * @param t
-     * @param <T>
-     * @return
-     */
-
     public <T> Observable<T> initObservable(T t) {
         return Observable.create((Observable.OnSubscribe<T>) (subscriber) -> {
             this.sendNext(subscriber, t);

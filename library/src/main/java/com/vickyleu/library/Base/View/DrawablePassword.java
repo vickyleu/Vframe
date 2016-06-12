@@ -53,11 +53,6 @@ public class DrawablePassword extends EditText {
         }
     }
 
-    /**
-     * @param text
-     * @param start
-     * @param watcher
-     */
     public void RefreshDrawable(CharSequence text, int start, int count, PasswordTextHelper watcher) {
         if (count == 0) {
             handler.removeCallbacksAndMessages(null);
@@ -85,7 +80,7 @@ public class DrawablePassword extends EditText {
                 .getInstance();
         drawable = getResources().getDrawable(R.drawable.dots);
         if (drawable != null) {
-            drawable.setBounds(3, 3, 12, 12);//这里设置图片的大小
+            drawable.setBounds(3, 3, 12, 12);
         }
     }
 
@@ -141,12 +136,6 @@ public class DrawablePassword extends EditText {
         return getResources().getString(id);
     }
 
-
-    /**
-     * 垂直居中的ImageSpan
-     *
-     * @author KenChung
-     */
     public class VerticalImageSpan extends ImageSpan {
         public VerticalImageSpan(Drawable drawable) {
             super(drawable);
