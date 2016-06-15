@@ -25,21 +25,20 @@ android {
 //            abiFilters "armeabi", "armeabi-v7a", "x86"
 //        }
     }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
     retrolambda {
         javaVersion JavaVersion.VERSION_1_6
     }
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
+
     //noinspection GroovyAssignabilityCheck
     buildTypes {
         release {
             signingConfig signingConfigs.config
             minifyEnabled false
-            shrinkResources true
-            jniDebuggable false
-            renderscriptDebuggable false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             ndk {
                 debuggable = true
@@ -47,6 +46,7 @@ android {
         }
         debug {
             debuggable = true
+            shrinkResources false
             jniDebuggable = true
         }
     }
