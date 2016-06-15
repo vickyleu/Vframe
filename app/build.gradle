@@ -1,11 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 android {
-    def app='example'
+    //noinspection GroovyAssignabilityCheck
     signingConfigs {
         config {
+            keyPassword 'android'
+            storeFile file('C:/Users/Administrator/.android/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
         }
     }
+    def app = 'example'
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
     defaultConfig {
@@ -14,6 +19,11 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+//        ndk {
+//            moduleName "Jni" // <-- This is the name of my C++ module!
+//            ldLibs "log", "z", "m"
+//            abiFilters "armeabi", "armeabi-v7a", "x86"
+//        }
     }
     retrolambda {
         javaVersion JavaVersion.VERSION_1_6
@@ -22,27 +32,36 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    //noinspection GroovyAssignabilityCheck
     buildTypes {
         release {
+            signingConfig signingConfigs.config
             minifyEnabled false
             shrinkResources true
+            jniDebuggable false
+            renderscriptDebuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ndk {
+                debuggable = true
+            }
+        }
+        debug {
+            debuggable = true
+            jniDebuggable = true
         }
     }
-
     lintOptions {
         abortOnError false
         checkReleaseBuilds false
     }
-
     //修改生成的apk名字
     android.applicationVariants.all { variant ->
         variant.outputs.each { output ->
             def oldFile = output.outputFile
 
-            if (app.equals(""))app='app'
+            if (app.equals("")) app = 'app'
             if (variant.buildType.name.equals('release')) {
-                def releaseApkName = app +"-v"+ defaultConfig.versionName + "-code" + defaultConfig.versionCode+"-" + getDate() + '.apk'
+                def releaseApkName = app + "-v" + defaultConfig.versionName + "-code" + defaultConfig.versionCode + "-" + getDate() + '.apk'
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if (variant.buildType.name.equals('beta')) {
@@ -50,7 +69,7 @@ android {
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
             if (variant.buildType.name.equals('debug')) {
-                def releaseApkName = app +"-v" + defaultConfig.versionName + "-debug" + ".apk"
+                def releaseApkName = app + "-v" + defaultConfig.versionName + "-debug" + ".apk"
                 output.outputFile = new File(oldFile.parent, releaseApkName)
             }
         }
@@ -62,8 +81,12 @@ def getDate() {
     def formattedDate = date.format('yyyyMMdd-HHmm')
     return formattedDate
 }
+
+//noinspection GroovyAssignabilityCheck
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile project(':library')
 }
+
+apply plugin: 'com.google.gms.google-services'

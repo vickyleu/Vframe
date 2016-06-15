@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "897646169690",
+    "firebase_url": "https://project-95030.firebaseio.com",
+    "project_id": "project-95030",
+    "storage_bucket": "project-95030.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897646169690:android:ecd5e6ec19109f7a",
+        "android_client_info": {
+          "package_name": "com.vicky.example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897646169690-8h6f6n08k1hebprobtqlrjlnd99nff49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv4_1wDCfMO0973hVqnVQXixXrnQ9hgTk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

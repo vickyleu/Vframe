@@ -7,6 +7,8 @@ import com.vickyleu.library.Base.model.Img.BaseImageCenter;
 
 
 public class ExampleImgCenter extends BaseImageCenter {
+
+
     public ExampleImgCenter(Context context, boolean useNoraml) {
         super(context, useNoraml);
     }

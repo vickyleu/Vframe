@@ -10,12 +10,8 @@ import android.view.ViewGroup;
 
 import com.vickyleu.library.Base.View.BaseFragment;
 
+@SuppressLint("ValidFragment")
 public class LoginFragment extends BaseFragment {
-
-    public LoginFragment() {
-    }
-
-    @SuppressLint("ValidFragment")
     public LoginFragment(Complated complated, int layout) {
         super(complated, layout);
     }
@@ -33,6 +29,9 @@ public class LoginFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.e("onViewCreated", "onViewCreated" + view);
+
+//      "javah -d jni -classpath D:/Develop/AndroidStudio/SDK/platforms/android-23/android.jar;../../build/intermediates/classes/release com.esapos.vicky.Native"
+
     }
 
     @Override
