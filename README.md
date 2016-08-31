@@ -1,23 +1,6 @@
 #Easy Framework
 ![alt text](./img/1.jpg)
 ##写在前头:只适用 Android Studio和 Intellij IDEA 工具!!!
-HttpLib reference for ```  Ecol ``` 's(郑毅)  code!
-网络请求引用了郑毅大神的代码
-
-library include Gson and RecyclerView support
-库文件包含Gson和回收视图支持
-
-Application class make use of ImageLoader for load Image;
-应用类默认使用imageload加载图片,可自己选择是否修改配置或者调用其他第三方图片库
-
-universal activity based on AppcompatActivity;
-通用活动类基于App兼容活动
-
-universal adapter based on RecycleAdapter;
-通用适配器基于回收适配器
-
-universal presenter did't have any 卵用(其实我还没弄明白有啥用,虽然是我自己写的.....)
-
 
 ##How To Use
 ###step1. 
